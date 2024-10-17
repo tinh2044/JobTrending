@@ -8,11 +8,10 @@ from transformers import pipeline
 # model = ORTModelForSeq2SeqLM.from_pretrained("tinh2312/MBart-salary-pred")
 # Create a FastAPI instance
 app = FastAPI()
-model_id = "tinh2312/Bart-salary-pred"
+model_id = "tinh2312/Bart-salary-pred-small"
 
-generator = pipeline(task="text2text-generation",
-                     model="tinh2312/Bart-salary-pred",
-                     tokenizer="tinh2312/Bart-salary-pred",
+generator = pipeline(model=model_id,
+                     tokenizer=model_id,
                      device='cpu')
 
 
