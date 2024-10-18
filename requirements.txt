@@ -8,3 +8,4 @@ torch~=2.3.0
 sentencepiece
 optimum
 onnxruntime
+onnx
