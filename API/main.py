@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
-from transformers import pipeline
+
+from optimum.onnxruntime import ORTModelForSeq2SeqLM
+from transformers import pipeline, AutoTokenizer
 
 # from optimum.onnxruntime import  ORTModelForSeq2SeqLM
 # tokenizer = AutoTokenizer.from_pretrained("vinai/bartpho-syllable")
@@ -9,10 +11,10 @@ from transformers import pipeline
 # Create a FastAPI instance
 app = FastAPI()
 model_id = "tinh2312/Bart-salary-pred-small"
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+ort_model = ORTModelForSeq2SeqLM.from_pretrained(model_id)
 
-generator = pipeline(model=model_id,
-                     tokenizer=model_id,
-                     device='cpu')
+generator = pipeline(task="text2text-generation", model=ort_model, tokenizer=tokenizer)
 
 
 # Define a Pydantic model for the request body
