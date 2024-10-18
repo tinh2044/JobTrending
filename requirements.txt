@@ -6,3 +6,4 @@ pandas~=2.0.3
 numpy~=1.26.4
 torch~=2.3.0
 sentencepiece
+optimum
